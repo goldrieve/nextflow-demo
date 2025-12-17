@@ -16,7 +16,7 @@ RUN apt-get -y update && apt-get install --yes --no-install-recommends \
 	git \
 	unzip \
 	default-jre \
-	samtools && \
+	samtools \
 	bwa
 
 RUN wget https://github.com/usadellab/Trimmomatic/releases/download/v0.40/Trimmomatic-0.40.zip --no-check-certificate && \
