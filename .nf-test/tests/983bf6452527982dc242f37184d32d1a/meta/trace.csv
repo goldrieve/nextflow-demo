@@ -1,2 +1,0 @@
-task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-1	90/d7dc1f	37282	TRIM	FAILED	1	2025-12-17 12:49:54.419	15.4s	15.2s	-	-	-	-	-
