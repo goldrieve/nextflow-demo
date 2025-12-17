@@ -1,0 +1,35 @@
+nextflow_process {
+
+    name "Test Process ALIGN"
+    script "modules/align.nf"
+    process "ALIGN"
+
+    test("Should align reads") {
+        when {
+            params {
+                cores = 1
+                ref = "${projectDir}/tests/data/phix_genome.fasta"
+            }
+            process {
+                """
+                input[0] = [
+                    [ id: 'test_sample', prefix: 'test_sample' ],
+                    [ 
+                        file("${projectDir}/tests/data/synthetic_1.fastq.gz", checkIfExists: true),
+                        file("${projectDir}/tests/data/synthetic_2.fastq.gz", checkIfExists: true)
+                    ]
+                ]
+                input[1] = params.ref
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            // nft-bam `bam()` expects a CharSequence; pass the path as String
+            assert snapshot(process.out.bam.collect { tuple -> bam(tuple[1].toString()).getReadsMD5() }).match()
+        }
+
+    }
+
+}

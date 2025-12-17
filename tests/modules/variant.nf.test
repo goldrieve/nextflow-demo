@@ -1,0 +1,43 @@
+nextflow_process {
+
+    name "Test Process VARIANT"
+    script "modules/variant.nf"
+    process "VARIANT"
+
+    test("Should call variants") {
+        when {
+            params {
+                cores = 1
+                ref = "${projectDir}/tests/data/phix_genome.fasta"
+                quality = 0
+                base_quality = 10
+                ploidy = 1
+            }
+            process {
+                """
+                input[0] = [
+                    [ id: 'phix', prefix: 'phix' ],
+                    [ 
+                        file("${projectDir}/tests/data/phix_sorted.bam", checkIfExists: true)
+                    ]
+                ]
+                input[1] = params.ref
+                input[2] = params.quality
+                input[3] = params.base_quality
+                input[4] = params.ploidy
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            def vcfFilePath = null
+            new File(workDir).eachFileRecurse { f -> if (f.name == 'phix.vcf.gz') vcfFilePath = f }
+            assert vcfFilePath != null
+            with(path(vcfFilePath.toString()).vcf) {
+                assert sampleCount == 1
+                assert variantCount == 5382
+            }
+        }
+    }
+}

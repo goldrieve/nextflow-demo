@@ -1,11 +1,16 @@
 nextflow.enable.dsl = 2
 
-params.outdir = 'results'
-params.genome = 'tests/data/phix_genome.fasta'
-params.samplesheet = 'tests/data/samples.csv'
+params.outdir = "results"
+params.ref = "$projectDir/tests/data/phix_genome.fasta"
+params.samplesheet = "$projectDir/tests/data/samples.csv"
 params.cores = 1
+params.quality = 0
+params.base_quality = 10
+params.ploidy = 1
 
 include { TRIM } from './modules/trim'
+include { ALIGN } from './modules/align'
+include { VARIANT } from './modules/variant'
 
 workflow {
     main:
@@ -29,5 +34,18 @@ workflow {
     TRIM (
         ch_reads,
         params.cores
+        )
+
+    ALIGN (
+        TRIM.out,
+        params.ref
+        )
+
+    VARIANT (
+        ALIGN.out,
+        params.ref,
+        params.quality,
+        params.base_quality,
+        params.ploidy
         )
 }
