@@ -1,0 +1,25 @@
+name: demo docker build test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs: 
+  Build:
+    runs-on: ubuntu-latest
+  
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Docker pull test
+        run: docker pull goldrieve/nextflow-demo:latest
+      
+      - name: Install nf-test 
+        run: |
+          wget -qO- https://get.nf-test.com | bash 
+          sudo mv nf-test /usr/local/bin/ 
+
+      - name: Run nf-test
+        run: nf-test test --ci

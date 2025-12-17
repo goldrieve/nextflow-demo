@@ -2,8 +2,10 @@ name: demo docker build test
 
 on:
   push:
-    branches: main
-    paths: 'Dockerfile'	
+    branches:
+      - main
+    paths:
+      - 'Dockerfile'	
 
 jobs: 
   Build:
