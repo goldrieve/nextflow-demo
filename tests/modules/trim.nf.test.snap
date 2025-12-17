@@ -1,0 +1,23 @@
+{
+    "Should trim reads": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test_sample",
+                        "prefix": "test_sample"
+                    },
+                    [
+                        "test_sample_trimmed_1.fq.gz:md5,74e2b625677bff99da56918e53985889",
+                        "test_sample_trimmed_2.fq.gz:md5,3bd45b65f1604ca936e7abc9260625e8"
+                    ]
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2025-12-17T13:40:05.310086"
+    }
+}

@@ -1,0 +1,34 @@
+nextflow_process {
+
+    name "Test Process TRIM"
+    script "modules/trim.nf"
+    process "TRIM"
+
+    test("Should trim reads") {
+
+        when {
+            params {
+                cores = 1
+            }
+            process {
+                """
+                input[0] = [
+                    [ id: 'test_sample', prefix: 'test_sample' ],
+                    [ 
+                        file("${projectDir}/tests/data/synthetic_1.fastq.gz", checkIfExists: true),
+                        file("${projectDir}/tests/data/synthetic_2.fastq.gz", checkIfExists: true)
+                    ]
+                ]
+                input[1] = 1
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assert snapshot(process.out.trimmed_reads).match()
+        }
+
+    }
+
+}

@@ -1,6 +1,5 @@
 nextflow.enable.dsl = 2
 
-params.reads = 'tests/data/SRR1398382_1.fastq.gz'
 params.outdir = 'results'
 params.genome = 'tests/data/phix_genome.fasta'
 params.samplesheet = 'tests/data/samples.csv'

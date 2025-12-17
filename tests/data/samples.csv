@@ -1,2 +1,2 @@
 sample,r1,r2
-phix,tests/data/SRR1390645_sub_1.fastq.gz,tests/data/SRR1390645_sub_2.fastq.gz
+phix,tests/data/synthetic_1.fastq.gz,tests/data/synthetic_2.fastq.gz

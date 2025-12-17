@@ -11,6 +11,6 @@ process TRIM {
 
     script:
         """
-        trimmomatic PE -threads ${cores} ${reads[0]} ${reads[1]} ${meta.prefix}_trimmed_1.fq.gz ${meta.prefix}unpaired_1.fq.gz ${meta.prefix}_trimmed_2.fq.gz ${meta.prefix}_unpaired_2.fq.gz SLIDINGWINDOW:4:5 LEADING:5 TRAILING:5 MINLEN:25
+        java -jar /usr/local/bin/trimmomatic.jar PE -threads ${cores} ${reads[0]} ${reads[1]} ${meta.prefix}_trimmed_1.fq.gz ${meta.prefix}unpaired_1.fq.gz ${meta.prefix}_trimmed_2.fq.gz ${meta.prefix}_unpaired_2.fq.gz SLIDINGWINDOW:4:5 LEADING:5 TRAILING:5 MINLEN:25
         """
 }
