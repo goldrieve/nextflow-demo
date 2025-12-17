@@ -1,0 +1,14 @@
+name: demo docker build
+
+on:
+  commit:
+    branches: main
+jobs: 
+  Build:
+    runs-on: self-hosted
+  
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v5
+      - name: Docker build
+        run: docker build -t demo .
