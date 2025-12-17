@@ -1,4 +1,4 @@
-name: demo docker build test
+name: docker build and test
 
 on:
   push:

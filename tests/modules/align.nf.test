@@ -26,7 +26,6 @@ nextflow_process {
 
         then {
             assert process.success
-            // nft-bam `bam()` expects a CharSequence; pass the path as String
             assert snapshot(process.out.bam.collect { tuple -> bam(tuple[1].toString()).getReadsMD5() }).match()
         }
 
