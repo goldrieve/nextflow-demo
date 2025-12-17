@@ -31,8 +31,6 @@ jobs:
 
       - name: Setup Nextflow
         uses: nf-core/setup-nextflow@v1
-        with: 
-          nextflow-version: '25.04.8'
       
       - name: Install nf-test 
         run: |
