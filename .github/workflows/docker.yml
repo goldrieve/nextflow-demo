@@ -3,6 +3,8 @@ name: demo docker build
 on:
   push:
     branches: main
+    paths: 'Dockerfile'	
+
 jobs: 
   Build:
     runs-on: ubuntu-latest
