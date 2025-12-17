@@ -1,4 +1,0 @@
-2025-12-17 11:31:18	-	evil_marconi	-	602cc0ccbb29c11f11959217294d0283	dabd6dbe-27fd-4b90-9beb-ee22f631a5a9	nextflow run main.nf
-2025-12-17 11:32:12	-	sleepy_curran	-	f97f9573bc159294c99c2ce20bfda4c5	6399100a-c0eb-4d0b-b4d3-b1ebeab4eb9d	nextflow run main.nf
-2025-12-17 11:32:35	2s	determined_mcnulty	ERR	c8ddb1da3a25f1351b0fcb471360416f	bf27e93d-b00a-4082-b730-e0bc4f4842bb	nextflow run main.nf
-2025-12-17 11:33:38	4.2s	insane_wiles	ERR	cc753a31cfd046ef00420a8b064da56a	a55c5a98-242d-444c-a84b-e1962c32d67c	nextflow run main.nf
