@@ -6,7 +6,7 @@ LABEL base.image=ubuntu:24.04
 LABEL software="nextflow-demo"
 LABEL about.summary="A demo nextflow pipeline"
 LABEL about.documentation="https://github.com/goldrieve/nextflow-demo"
-LABEL about.tags="WGS"
+LABEL about.tags="WGS, Genomics"
 
 # DEPENDENCIES #
 
