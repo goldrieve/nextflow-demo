@@ -1,7 +1,7 @@
 name: demo docker build
 
 on:
-  commit:
+  push:
     branches: main
 jobs: 
   Build:
