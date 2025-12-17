@@ -12,7 +12,7 @@ include { TRIM } from './modules/trim'
 include { ALIGN } from './modules/align'
 include { VARIANT } from './modules/variant'
 
-workflow {
+workflow demo {
     main:
 
     ch_samplesheet = Channel.fromPath(params.samplesheet)
@@ -48,4 +48,7 @@ workflow {
         params.base_quality,
         params.ploidy
         )
+
+    emit:
+        VARIANT.out
 }

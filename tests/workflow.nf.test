@@ -1,0 +1,33 @@
+nextflow_workflow {
+    name "Test integration"
+    script "main.nf"
+    workflow "demo"
+
+    test("Should integrate modules") {
+
+        when {
+            params {
+            samplesheet = "${outputDir}/test_samples.csv"
+            }
+            workflow {
+                """
+                                new File("${outputDir}/test_samples.csv").text = '''sample,r1,r2
+phix,${projectDir}/tests/data/synthetic_1.fastq.gz,${projectDir}/tests/data/synthetic_2.fastq.gz'''
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            def vcfFilePath = null
+            new File(workDir).eachFileRecurse { f -> if (f.name == 'phix.vcf.gz') vcfFilePath = f }
+            assert vcfFilePath != null
+            with(path(vcfFilePath.toString()).vcf) {
+                assert sampleCount == 1
+                assert variantCount == 5382
+            }
+        }
+
+    }
+
+}
