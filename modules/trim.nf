@@ -1,0 +1,16 @@
+process TRIM {
+    publishDir "${params.outdir}/trimmed", mode:'copy'
+    
+    input:
+        tuple val(meta), path(reads)
+        val cores
+
+    output:
+        tuple val(meta), path("*trimmed*.fq.gz"), emit: trimmed_reads
+
+
+    script:
+        """
+        trimmomatic PE -threads ${cores} ${reads[0]} ${reads[1]} ${meta.prefix}_trimmed_1.fq.gz ${meta.prefix}unpaired_1.fq.gz ${meta.prefix}_trimmed_2.fq.gz ${meta.prefix}_unpaired_2.fq.gz SLIDINGWINDOW:4:5 LEADING:5 TRAILING:5 MINLEN:25
+        """
+}
